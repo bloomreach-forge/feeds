@@ -33,7 +33,9 @@ public class HippoGalleryImageSetToImageTransformer {
         final String imageLink = hstLinkCreator.create(imageSet, context).toUrlForm(context, true);
         image.setUrl(imageLink);
         image.setLink(baseLink);
-        image.setTitle(imageSet.getFileName());
+        image.setTitle(imageSet.getDescription());
+        image.setHeight(imageSet.getOriginal().getHeight());
+        image.setWidth(imageSet.getOriginal().getWidth());
         return image;
     }
 
