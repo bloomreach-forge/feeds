@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2020 Hippo B.V. (http://www.onehippo.com)
+ * Copyright 2013-2022 Hippo B.V. (http://www.onehippo.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 
 package org.bloomreach.forge.feed.api.transform.rss;
 
+import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.content.beans.standard.HippoGalleryImageSet;
 import org.hippoecm.hst.core.linking.HstLinkCreator;
 import org.hippoecm.hst.core.request.HstRequestContext;
@@ -33,7 +34,11 @@ public class HippoGalleryImageSetToImageTransformer {
         final String imageLink = hstLinkCreator.create(imageSet, context).toUrlForm(context, true);
         image.setUrl(imageLink);
         image.setLink(baseLink);
-        image.setTitle(imageSet.getFileName());
+        image.setTitle(StringUtils.isNotEmpty(imageSet.getDescription()) ? imageSet.getDescription() : imageSet.getFileName());
+        if (imageSet.getOriginal() != null) {
+            image.setHeight(imageSet.getOriginal().getHeight());
+            image.setWidth(imageSet.getOriginal().getWidth());
+        }
         return image;
     }
 
