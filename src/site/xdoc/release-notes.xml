@@ -60,11 +60,22 @@
       </table>
     </section>
     <section name="Release Notes">
+      <subsection name="6.0.1">
+        <p class="smallinfo">Release Date: 4 July 2022</p>
+        <ul>
+         <li>
+           <a href="https://issues.onehippo.com/browse/HIPFORGE-422">HIPFORGE-422</a><br/>
+           Fix for bug in RSS when image from imageset displays negative width, height
+           (<a href="https://github.com/bloomreach-forge/feeds/pull/2">pull request #2</a>). Also set description to
+           the description field of the image, rather than filename.
+         </li>
+        </ul>
+      </subsection>
       <subsection name="6.0.0">
         <p class="smallinfo">Release Date: 2 March 2020</p>
         <ul>
          <li>
-           <a href='https://issues.onehippo.com/browse/HIPFORGE-335'>HIPFORGE-335</a><br/>
+           <a href="https://issues.onehippo.com/browse/HIPFORGE-335">HIPFORGE-335</a><br/>
            Upgrade to Bloomreach Experience Manager 14.
          </li>
           <li>
