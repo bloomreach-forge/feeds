@@ -12,7 +12,7 @@
   <description>feedsdemo</description>
   <groupId>org.example</groupId>
   <artifactId>feedsdemo</artifactId>
-  <version>6.0.1-SNAPSHOT</version>
+  <version>6.0.1</version>
   <packaging>pom</packaging>
 
   <!--
