@@ -3,7 +3,7 @@
   "-//Apache Software Foundation//DTD XDOC 1.0//EN"
   "http://maven.apache.org/dtd/xdoc_1_0.dtd">
 <!--
-    Copyright 2009-2013 Hippo B.V. (http://www.onehippo.com)
+    Copyright 2009-2022 Bloomreach
 
     Licensed under the Apache License, Version 2.0 (the  "License");
     you may not use this file except in compliance with the License.
@@ -30,28 +30,22 @@
         <p>
           Add a new "Feed" document (aka descriptor) anywhere in your CMS.
         </p>
-
         <ol>
           <li>
             <p>In the CMS, in the Content / Documents section, create a new folder called 'syndication'.</p>
           </li>
-
           <li>
             <p>In the folder 'syndication', create some documents of type 'RSS 2.0 Feed', 'Atom 1.0 Feed' or 'Generic Feed' fill it with dummy text.</p>
             <p><strong>Note: the document names are very important to remember because they will be used later on when trying to get one of the feeds.</strong></p>
           </li>
         </ol>
-
         <p>
           <a href="screenshots/feed-doc1.png">
             <img src="screenshots/feed-doc1.png" alt="Screenshot 'Add new document'" width="800"/>
           </a>
         </p>
-
       </subsection>
-
       <subsection name="Define Query parameters on your Feed Document">
-
         <p>
           While you still have the Document open add query parameters on the right side of your document. Such as; document type, limit, etc etc.
           <br/>
@@ -59,9 +53,7 @@
             <img src="screenshots/feed-doc1.png" alt="Screenshot 'Add new document'" width="800"/>
           </a>
         </p>
-
       </subsection>
-
       <subsection name="Create a sitemap item in your configuration">
         <p>
           In order to make your feed findable you need to add a sitemap item to your configuration.
@@ -73,45 +65,35 @@
                   <img src="screenshots/hst-sitemap-demo.png" alt="feed sitemap item example" width="800"/>
               </a>
           </p>
-
         <p>
             <a href="screenshots/feed-sitemap.png">
                 <img src="screenshots/feed-sitemap.png" alt="feed sitemap item example detail" width="800"/>
             </a>
         </p>
-
       </subsection>
-
       <subsection name="Create a link to the Feed Document">
-
         <p>
          You could create a link to your Feed document from anywhere in your CMS.
         </p>
-
         <p>
           <a href="screenshots/feed-doc2.png">
             <img src="screenshots/feed-doc2.png" alt="Screenshot 'Add link'" width="800"/>
           </a>
         </p>
-
         <p>
          HST will resolve the link to the Feed.
         </p>
-
-
         <p>
           Admire the result:
           <a href="http://localhost:8080/site/feed/syndication/rss.xml">
             http://localhost:8080/site/feed/syndication/rss.xml
           </a>
         </p>
-
         <p>
           <a href="screenshots/feed-doc3.png">
             <img src="screenshots/feed-doc3.png" alt="RSS feed example" width="800"/>
           </a>
         </p>
-
       </subsection>
     </section>
     <section name="Customization">
@@ -120,19 +102,16 @@
           Every Feed has one or more entries. RSS Channel has Items, Atom Feed has entries.
         </p>
         <p>
-          With the SyndicationElement annotation you can couple bean property methods with entry elements:
-          <a href="https://github.com/bloomreach-forge/feeds/tree/master/demo/site/src/main/java/org/example/beans/NewsDocument.java">
-            NEWS BEAN LINK
-          </a>
-
+          With the SyndicationElement annotation you can couple bean property methods with entry elements: see the
+          <a href="https://github.com/bloomreach-forge/feeds/tree/master/demo/site/components/src/main/java/org/example/beans/NewsDocument.java">
+            NewsDocument bean from the demo
+          </a>.
         </p>
-
         <p>
           <a href="screenshots/feed-doc4.png">
             <img src="screenshots/feed-doc4.png" alt="Bean customization" width="800"/>
           </a>
         </p>
-
         <p>
           This will result in the following:
           <br/>
@@ -140,7 +119,6 @@
             <img src="screenshots/feed-doc5.png" alt="Bean customization" width="800"/>
           </a>
         </p>
-
         <p>
           Example of an Atom feed with the annotations:
           <br/>
@@ -148,12 +126,7 @@
             <img src="screenshots/feed-doc6.png" alt="Bean customization" width="800"/>
           </a>
         </p>
-
       </subsection>
-
-
-
-
     </section>
   </body>
 </document>

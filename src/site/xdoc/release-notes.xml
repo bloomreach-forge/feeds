@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!--
-    Copyright 2017-2020 Hippo
+    Copyright 2017-2022 Bloomreach
 
     Licensed under the Apache License, Version 2.0
     (the "License"); you may not use this file except in compliance with
@@ -28,6 +28,10 @@
           </th>
           <th>Bloomreach Experience Manager
           </th>
+        </tr>
+        <tr>
+          <td>7.x</td>
+          <td>15</td>
         </tr>
         <tr>
           <td>6.x</td>
@@ -60,6 +64,16 @@
       </table>
     </section>
     <section name="Release Notes">
+      <subsection name="7.0.0">
+        <p class="smallinfo">Release Date: 26 September 2022</p>
+        <ul>
+         <li>
+           <a href="https://issues.onehippo.com/browse/HIPFORGE-421">HIPFORGE-421</a>
+           Upgrade to Bloomreach Experience Manager 15 and build on Java 11.
+         </li>
+          <li>Bump Rome library version from 1.12.0 to 1.18.0.</li>
+        </ul>
+      </subsection>
       <subsection name="6.0.1">
         <p class="smallinfo">Release Date: 4 July 2022</p>
         <ul>
