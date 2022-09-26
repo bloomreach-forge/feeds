@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"org.bloomreach.forge.feed.resource","l":"DocumentTypeHelperTest"},{"p":"org.bloomreach.forge.feed","l":"RssAtomGenerationTest"},{"p":"org.bloomreach.forge.feed","l":"RssAtomGenerationTest.TestBean"}]
