@@ -19,26 +19,28 @@
   <parent>
     <groupId>org.onehippo.cms7</groupId>
     <artifactId>hippo-cms7-project</artifactId>
-    <version>31.0.0</version>
+    <version>15.0.0</version>
   </parent>
 
   <name>Bloomreach Forge Feed Creator</name>
   <groupId>org.bloomreach.forge.feed</groupId>
   <artifactId>feed</artifactId>
-  <version>6.0.2-SNAPSHOT</version>
+  <version>7.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <properties>
     <!-- use root project name for all project modules NOTICE files, should be the same as in the root NOTICE file -->
     <notice.project.name>Bloomreach Forge Feed Creator</notice.project.name>
-    <hippo.hst.version>14.0.0</hippo.hst.version>
-    <hippo.repository.version>13.4.0</hippo.repository.version>
+    <hippo.hst.version>${hippo.release.version}</hippo.hst.version>
+    <hippo.repository.version>${hippo.release.version}</hippo.repository.version>
 
-    <rome.version>1.12.0</rome.version>
+    <rome.version>1.18.0</rome.version>
+
+    <junit.version>4.13.2</junit.version>
 
     <maven.plugin.site.version>3.7</maven.plugin.site.version>
     <maven.plugin.source.version>2.2.1</maven.plugin.source.version>
-    <maven.plugin.compiler.version>3.1</maven.plugin.compiler.version>
+    <maven.plugin.compiler.version>3.10.1</maven.plugin.compiler.version>
     <maven.plugin.jar.version>2.4</maven.plugin.jar.version>
     <maven.plugin.surefire.version>2.16</maven.plugin.surefire.version>
     <maven.plugin.jxr.version>3.0.0</maven.plugin.jxr.version>

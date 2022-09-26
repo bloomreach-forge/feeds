@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/bloomreach-forge/feeds.svg?branch=develop)](https://travis-ci.org/bloomreach-forge/feeds)
-
 # Feeds Plugin
 
 The Feeds project is an plugin for Hippo CMS that lets you create [RSS feeds](http://cyber.law.harvard.edu/rss/rss.html), [ATOM 
