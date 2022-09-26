@@ -3,7 +3,7 @@
   "-//Apache Software Foundation//DTD XDOC 1.0//EN"
   "http://maven.apache.org/dtd/xdoc_1_0.dtd">
 <!--
-  Copyright 2009-2020 Hippo B.V. (http://www.onehippo.com)
+  Copyright 2009-2022 Bloomreach
 
   Licensed under the Apache License, Version 2.0 (the  "License");
   you may not use this file except in compliance with the License.
@@ -50,7 +50,7 @@
           file in the root of your project.</p>
     <source><![CDATA[
 <properties>
-  <bloomreach.forge.feed.version>6.0.1</bloomreach.forge.feed.version>
+  <bloomreach.forge.feed.version>7.0.0</bloomreach.forge.feed.version>
 </properties>]]></source>
           <p>You can find the correct version of the plugin for your project in the table on the
             <a href="release-notes.html">Release Notes page</a>.</p>
