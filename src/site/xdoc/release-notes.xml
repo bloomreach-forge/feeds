@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!--
-    Copyright 2017-2022 Bloomreach
+    Copyright 2017-2024 Bloomreach
 
     Licensed under the Apache License, Version 2.0
     (the "License"); you may not use this file except in compliance with
@@ -28,6 +28,10 @@
           </th>
           <th>Bloomreach Experience Manager
           </th>
+        </tr>
+        <tr>
+          <td>8.x</td>
+          <td>16</td>
         </tr>
         <tr>
           <td>7.x</td>
@@ -64,6 +68,16 @@
       </table>
     </section>
     <section name="Release Notes">
+      <subsection name="8.0.0">
+        <p class="smallinfo">Release Date: 6 August 2024</p>
+        <ul>
+         <li>
+           <a href="https://issues.onehippo.com/browse/FORGE-533">FORGE-533</a>
+           Upgrade to Bloomreach Experience Manager 16, JDK 17.
+         </li>
+          <li>Bump Rome library version from 1.18.0 to 2.1.0.</li>
+        </ul>
+      </subsection>
       <subsection name="7.0.0">
         <p class="smallinfo">Release Date: 26 September 2022</p>
         <ul>

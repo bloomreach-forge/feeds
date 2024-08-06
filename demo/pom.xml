@@ -5,14 +5,14 @@
   <parent>
     <groupId>org.onehippo.cms7</groupId>
     <artifactId>hippo-cms7-release</artifactId>
-    <version>15.0.0</version>
+    <version>16.0.0</version>
   </parent>
 
   <name>feedsdemo</name>
   <description>feedsdemo</description>
   <groupId>org.example</groupId>
   <artifactId>feedsdemo</artifactId>
-  <version>7.0.1-SNAPSHOT</version>
+  <version>x.y.z</version>
   <packaging>pom</packaging>
 
   <!--
@@ -63,10 +63,8 @@
     <!--***START temporary override of versions*** -->
     <!-- ***END temporary override of versions*** -->
 
-    <essentials.version>14.0.0</essentials.version>
-    <jsp-api.version>2.2</jsp-api.version>
-    <taglibs.version>1.2.5</taglibs.version>
-
+    <essentials.version>16.0.0</essentials.version>
+    
     <development-module-deploy-dir>shared/lib</development-module-deploy-dir>
 
     <hippo.cms.locales>nl,de,fr,es,zh</hippo.cms.locales>
@@ -88,31 +86,30 @@
 
   <dependencyManagement>
     <dependencies>
-
       <dependency>
         <groupId>org.bloomreach.forge.feed</groupId>
         <artifactId>feed-repository</artifactId>
         <version>${bloomreach.forge.feed.version}</version>
       </dependency>
-
+      
       <dependency>
-        <groupId>javax.servlet.jsp</groupId>
-        <artifactId>jsp-api</artifactId>
+        <groupId>jakarta.servlet.jsp</groupId>
+        <artifactId>jakarta.servlet.jsp-api</artifactId>
         <version>${jsp-api.version}</version>
         <scope>provided</scope>
       </dependency>
 
       <!-- other predefined runtime scope versioned dependencies -->
       <dependency>
-        <groupId>org.apache.taglibs</groupId>
-        <artifactId>taglibs-standard-spec</artifactId>
+        <groupId>com.bloomreach.xm</groupId>
+        <artifactId>taglibs-standard-spec-jakarta</artifactId>
         <version>${taglibs.version}</version>
         <scope>runtime</scope>
       </dependency>
 
       <dependency>
-        <groupId>org.apache.taglibs</groupId>
-        <artifactId>taglibs-standard-impl</artifactId>
+        <groupId>com.bloomreach.xm</groupId>
+        <artifactId>taglibs-standard-impl-jakarta</artifactId>
         <version>${taglibs.version}</version>
         <scope>runtime</scope>
       </dependency>
@@ -270,17 +267,45 @@
       </properties>
     </profile>
 
+
     <profile>
       <id>cargo.run</id>
       <properties>
         <!-- Already defined in the cms project POM. Override here for your project, if necessary -->
         <!-- <repo.bootstrap>true</repo.bootstrap> -->
       </properties>
+      <dependencies>
+        <dependency>
+          <groupId>jakarta.xml.bind</groupId>
+          <artifactId>jakarta.xml.bind-api</artifactId>
+          <scope>compile</scope>
+        </dependency>
+        <dependency>
+          <groupId>jakarta.xml.ws</groupId>
+          <artifactId>jakarta.xml.ws-api</artifactId>
+          <scope>compile</scope>
+        </dependency>
+        <dependency>
+          <groupId>jakarta.annotation</groupId>
+          <artifactId>jakarta.annotation-api</artifactId>
+          <scope>compile</scope>
+        </dependency>
+        <dependency>
+          <groupId>jakarta.activation</groupId>
+          <artifactId>jakarta.activation-api</artifactId>
+          <scope>runtime</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.glassfish.jaxb</groupId>
+          <artifactId>jaxb-runtime</artifactId>
+          <scope>runtime</scope>
+        </dependency>
+      </dependencies>
       <build>
         <plugins>
           <plugin>
             <groupId>org.codehaus.cargo</groupId>
-            <artifactId>cargo-maven2-plugin</artifactId>
+            <artifactId>cargo-maven3-plugin</artifactId>
             <configuration>
               <configuration>
                 <configfiles>
@@ -352,7 +377,6 @@
         </plugins>
       </build>
     </profile>
-
     <profile>
       <!-- additional profile to combine with cargo:run to *not* bootstrap the development modules:
            $ mvn -P cargo.run,without-development-data -->
