@@ -1,5 +1,5 @@
 <!--
-    Copyright 2009-2022 Hippo B.V. (http://www.onehippo.com)
+    Copyright 2009-2024 Bloomreach
 
     Licensed under the Apache License, Version 2.0 (the  "License");
     you may not use this file except in compliance with the License.
@@ -19,13 +19,13 @@
   <parent>
     <groupId>org.onehippo.cms7</groupId>
     <artifactId>hippo-cms7-project</artifactId>
-    <version>15.0.0</version>
+    <version>16.0.0</version>
   </parent>
 
   <name>Bloomreach Forge Feed Creator</name>
   <groupId>org.bloomreach.forge.feed</groupId>
   <artifactId>feed</artifactId>
-  <version>7.0.0</version>
+  <version>8.0.0</version>
   <packaging>pom</packaging>
 
   <properties>
@@ -34,16 +34,16 @@
     <hippo.hst.version>${hippo.release.version}</hippo.hst.version>
     <hippo.repository.version>${hippo.release.version}</hippo.repository.version>
 
-    <rome.version>1.18.0</rome.version>
+    <rome.version>2.1.0</rome.version>
 
     <junit.version>4.13.2</junit.version>
 
-    <maven.plugin.site.version>3.7</maven.plugin.site.version>
-    <maven.plugin.source.version>2.2.1</maven.plugin.source.version>
-    <maven.plugin.compiler.version>3.10.1</maven.plugin.compiler.version>
-    <maven.plugin.jar.version>2.4</maven.plugin.jar.version>
-    <maven.plugin.surefire.version>2.16</maven.plugin.surefire.version>
-    <maven.plugin.jxr.version>3.0.0</maven.plugin.jxr.version>
+    <maven.plugin.site.version>3.12.1</maven.plugin.site.version>
+    <maven.plugin.source.version>3.3.0</maven.plugin.source.version>
+    <maven.plugin.compiler.version>3.13.0</maven.plugin.compiler.version>
+    <maven.plugin.jar.version>3.4.2</maven.plugin.jar.version>
+    <maven.plugin.surefire.version>3.3.1</maven.plugin.surefire.version>
+    <maven.plugin.jxr.version>3.4.0</maven.plugin.jxr.version>
   </properties>
 
   <inceptionYear>2013</inceptionYear>
@@ -62,9 +62,9 @@
 
   <distributionManagement>
     <repository>
-      <name>Hippo Maven 2 Forge Repository</name>
-      <id>hippo-maven2-forge</id>
-      <url>https://maven.onehippo.com/content/repositories/forge-releases/</url>
+      <name>Bloomreach Maven 2 Forge Repository</name>
+      <id>bloomreach-maven2-forge</id>
+      <url>https://maven.bloomreach.com/content/repositories/forge-releases/</url>
       <uniqueVersion>false</uniqueVersion>
     </repository>
   </distributionManagement>
@@ -105,9 +105,9 @@
 
   <repositories>
     <repository>
-      <id>hippo</id>
-      <name>Hippo Maven 2 repository</name>
-      <url>http://maven.onehippo.com/maven2/</url>
+      <id>bloomreach</id>
+      <name>Bloomreach Maven 2 repository</name>
+      <url>http://maven.bloomreach.com/maven2/</url>
       <snapshots />
       <releases>
         <updatePolicy>never</updatePolicy>

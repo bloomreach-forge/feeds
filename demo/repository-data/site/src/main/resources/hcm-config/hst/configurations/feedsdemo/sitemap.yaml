@@ -22,3 +22,16 @@ definitions:
           jcr:primaryType: hst:sitemapitem
           hst:relativecontentpath: ${parent}/${1}
           hst:namedpipeline: JaxrsRestFeedPipeline
+      /root:
+        jcr:primaryType: hst:sitemapitem
+        hst:componentconfigurationid: hst:pages/homepage
+        hst:pagetitle: Home Page
+        hst:refId: root
+      /_any_:
+        jcr:primaryType: hst:sitemapitem
+        hst:componentconfigurationid: hst:pages/pagenotfound
+      /pagenotfound:
+        jcr:primaryType: hst:sitemapitem
+        hst:componentconfigurationid: hst:pages/pagenotfound
+        hst:pagetitle: Not Found Page
+        hst:refId: pagenotfound
