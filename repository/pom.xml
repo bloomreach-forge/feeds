@@ -21,7 +21,7 @@
   <parent>
     <groupId>org.bloomreach.forge.feed</groupId>
     <artifactId>feed</artifactId>
-    <version>8.0.0</version>
+    <version>8.0.1-SNAPSHOT</version>
   </parent>
 
   <name>Bloomreach Forge Feed Creator Repository Module</name>
