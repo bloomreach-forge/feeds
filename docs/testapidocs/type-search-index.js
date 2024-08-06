@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"org.bloomreach.forge.feed.resource","l":"DocumentTypeHelperTest"},{"p":"org.bloomreach.forge.feed","l":"RssAtomGenerationTest"},{"p":"org.bloomreach.forge.feed","l":"RssAtomGenerationTest.TestBean"}];updateSearchResults();
