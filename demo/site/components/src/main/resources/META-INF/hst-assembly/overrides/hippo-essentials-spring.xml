@@ -27,5 +27,39 @@
   <bean id="org.onehippo.cms7.essentials.components.ext.DoBeforeRenderExtension"
         class="org.onehippo.cms7.essentials.components.ext.NoopDoBeforeRenderExtension"/>
 
+  <!-- ============================================================ -->
+  <!-- Feed Modifiers - Property Filtering Examples                 -->
+  <!-- ============================================================ -->
+
+  <!-- Example 1: PropertyFilterModifier with custom properties -->
+  <bean id="propertyFilterModifier" class="org.example.feed.PropertyFilterModifier">
+    <property name="filters">
+      <map>
+        <entry key="location" value="Rome"/>
+      </map>
+    </property>
+  </bean>
+
+  <!-- Example 2: Pre-built PublishedNewsModifier for published news only -->
+  <bean id="publishedNewsModifier" class="org.example.feed.PublishedNewsModifier" scope="singleton"/>
+
+  <!-- Example 3: Image modifier with property filtering combined -->
+  <bean id="imageModifierWithFiltering" class="org.example.feed.ImageModifier" scope="singleton"/>
+
+ <!--  
+    To use a modifier with a feed resource, uncomment the desired configuration below
+    and ensure the corresponding feed descriptor exists in your content repository.
+
+    Each resource type (RSS20, Atom10, Generic) can have its own modifier configured.
+
+    Example: Uncomment to use property filtering with RSS feeds
+ -->
+    <bean id="jaxrsRSSResource" class="org.bloomreach.forge.feed.resource.RssSyndicationResource" scope="prototype">
+      <property name="modifier" ref="propertyFilterModifier"/>
+    </bean>
+<!-- 
+    To use different modifiers for different scenarios, create separate resource beans
+    with different IDs and reference them appropriately in your sitemap configuration.
+   -->
 
 </beans>
