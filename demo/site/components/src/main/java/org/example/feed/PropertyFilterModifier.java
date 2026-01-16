@@ -24,6 +24,7 @@ import java.util.Set;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.bloomreach.forge.feed.api.modifier.RSS20Modifier;
+import org.bloomreach.forge.feed.beans.RSS20FeedDescriptor;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.request.HstRequestContext;
 import org.slf4j.Logger;
@@ -174,20 +175,23 @@ public class PropertyFilterModifier extends RSS20Modifier {
     }
 
     @Override
-    public void modifyFeed(final HstRequestContext context, final Channel feed, final org.bloomreach.forge.feed.beans.RSS20FeedDescriptor descriptor) {
+    public void modifyFeed(final HstRequestContext context, final Channel feed, final RSS20FeedDescriptor descriptor) {
         super.modifyFeed(context, feed, descriptor);
 
-        // Remove excluded entries from the feed
-        Set<Item> excluded = EXCLUDED_ENTRIES.get();
-        if (!excluded.isEmpty() && feed.getItems() != null) {
-            List<Item> items = feed.getItems();
-            for (Item excludedItem : excluded) {
-                if (items.remove(excludedItem)) {
-                    log.debug("Removed excluded entry from feed");
+        try {
+            // Remove excluded entries from the feed
+            Set<Item> excluded = EXCLUDED_ENTRIES.get();
+            if (!excluded.isEmpty() && feed.getItems() != null) {
+                List<Item> items = feed.getItems();
+                for (Item excludedItem : excluded) {
+                    if (items.remove(excludedItem)) {
+                        log.debug("Removed excluded entry from feed");
+                    }
                 }
             }
+        } finally {
             // Clean up thread-local after use
-            excluded.clear();
+            EXCLUDED_ENTRIES.remove();
         }
     }
 
