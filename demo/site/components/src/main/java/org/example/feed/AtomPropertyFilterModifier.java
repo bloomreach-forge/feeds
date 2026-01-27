@@ -22,25 +22,28 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.bloomreach.forge.feed.api.modifier.RSS20Modifier;
-import org.bloomreach.forge.feed.beans.RSS20FeedDescriptor;
+import org.bloomreach.forge.feed.api.modifier.Atom10Modifier;
+import org.bloomreach.forge.feed.beans.Atom10FeedDescriptor;
+import org.example.beans.NewsDocument;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.request.HstRequestContext;
+import org.jdom2.Element;
+import org.jdom2.Namespace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.rometools.rome.feed.rss.Channel;
-import com.rometools.rome.feed.rss.Item;
+import com.rometools.rome.feed.atom.Entry;
+import com.rometools.rome.feed.atom.Feed;
 
 /**
  * <p>
- * Reference implementation for filtering feed items based on document properties.
- * This modifier filters feed entries by evaluating document properties and excluding
- * entries that don't match the specified filter criteria.
+ * Atom-compatible version of PropertyFilterModifier for filtering Atom feed entries
+ * based on document properties. This mirrors the functionality of PropertyFilterModifier
+ * but works with Atom feed types.
  * </p>
  *
  * <p>
- * <strong>How it works:</strong> This modifier evaluates each feed entry (document) during
+ * <strong>How it works:</strong> This modifier evaluates each Atom feed entry (document) during
  * feed generation and filters out entries that don't match all specified property filters.
  * This happens after the HstQuery executes, providing a reliable way to filter regardless
  * of the Bloomreach/HST version.
@@ -49,108 +52,38 @@ import com.rometools.rome.feed.rss.Item;
  * <h2>Configuration Example:</h2>
  *
  * <pre>
- * &lt;bean id="propertyFilterModifier" class="org.example.feed.PropertyFilterModifier"&gt;
+ * &lt;bean id="atomPropertyFilterModifier" class="org.example.feed.AtomPropertyFilterModifier"&gt;
  *   &lt;property name="filters"&gt;
  *     &lt;map&gt;
- *       &lt;entry key="status" value="published" /&gt;
- *       &lt;entry key="featured" value="true" /&gt;
+ *       &lt;entry key="location" value="Rotterdam" /&gt;
  *     &lt;/map&gt;
  *   &lt;/property&gt;
  * &lt;/bean&gt;
  * </pre>
  *
- * <h2>Filtering Logic:</h2>
- * <ul>
- *   <li>An entry is included if it matches ALL filters (AND logic)</li>
- *   <li>An entry is excluded if it doesn't match any filter</li>
- *   <li>Property values are compared as strings</li>
- *   <li>Comparison is case-sensitive</li>
- *   <li>Missing properties cause the entry to be excluded</li>
- * </ul>
- *
- * <h2>Supported Operators:</h2>
- * <ul>
- *   <li><code>EQUALS</code> (default): property = value</li>
- *   <li><code>NOT_EQUALS</code>: property != value</li>
- *   <li><code>GREATER_THAN</code>: property &gt; value (for dates and numbers)</li>
- *   <li><code>LESS_THAN</code>: property &lt; value (for dates and numbers)</li>
- *   <li><code>GREATER_THAN_OR_EQUAL</code>: property &gt;= value</li>
- *   <li><code>LESS_THAN_OR_EQUAL</code>: property &lt;= value</li>
- *   <li><code>CONTAINS</code>: property contains substring</li>
- * </ul>
- *
- * @see RSS20Modifier
+ * @see PropertyFilterModifier
  */
-public class PropertyFilterModifier extends RSS20Modifier {
+public class AtomPropertyFilterModifier extends Atom10Modifier {
 
-    private static final Logger log = LoggerFactory.getLogger(PropertyFilterModifier.class);
+    private static final Logger log = LoggerFactory.getLogger(AtomPropertyFilterModifier.class);
 
     /**
-     * Simple property=value filters. Override or inject additional filters as needed.
+     * Simple property=value filters.
      */
     private Map<String, String> filters = new HashMap<>();
 
     /**
-     * Track excluded entries during this request (thread-local to avoid concurrency issues).
-     * Note: This is a simplified approach. For production, consider using request-scoped storage.
+     * Track excluded entries during this request.
      */
-    private static final ThreadLocal<Set<Item>> EXCLUDED_ENTRIES = ThreadLocal.withInitial(HashSet::new);
+    private static final ThreadLocal<Set<Entry>> EXCLUDED_ENTRIES = ThreadLocal.withInitial(HashSet::new);
 
     /**
-     * Supported filter operators for property-based filtering.
+     * Custom namespace for enriched feed content.
      */
-    public enum FilterOperator {
-        EQUALS,
-        NOT_EQUALS,
-        GREATER_THAN,
-        LESS_THAN,
-        GREATER_THAN_OR_EQUAL,
-        LESS_THAN_OR_EQUAL,
-        CONTAINS
-    }
-
-    /**
-     * Container for a single filter specification with property name, value, and operator.
-     */
-    public static class Filter {
-        private final String property;
-        private final String value;
-        private final FilterOperator operator;
-
-        public Filter(String property, String value) {
-            this(property, value, FilterOperator.EQUALS);
-        }
-
-        public Filter(String property, String value, FilterOperator operator) {
-            this.property = property;
-            this.value = value;
-            this.operator = operator;
-        }
-
-        public String getProperty() {
-            return property;
-        }
-
-        public String getValue() {
-            return value;
-        }
-
-        public FilterOperator getOperator() {
-            return operator;
-        }
-
-        @Override
-        public String toString() {
-            return "Filter{" +
-                    "property='" + property + '\'' +
-                    ", value='" + value + '\'' +
-                    ", operator=" + operator +
-                    '}';
-        }
-    }
+    private static final Namespace FEEDSDEMO_NS = Namespace.getNamespace("feedsdemo", "http://feedsdemo.example.org/");
 
     @Override
-    public void modifyEntry(final HstRequestContext context, final Item entry, final HippoBean bean) {
+    public void modifyEntry(final HstRequestContext context, final Entry entry, final HippoBean bean) {
         super.modifyEntry(context, entry, bean);
 
         if (filters == null || filters.isEmpty()) {
@@ -165,26 +98,83 @@ public class PropertyFilterModifier extends RSS20Modifier {
 
             if (!matchesFilter(bean, propertyName, expectedValue)) {
                 // Entry doesn't match this filter, mark it for exclusion
-                log.debug("Entry {} excluded: property '{}' != '{}'",
+                log.debug("Atom entry {} excluded: property '{}' != '{}'",
                         bean.getName(), propertyName, expectedValue);
                 // Track this entry for removal in modifyFeed()
                 EXCLUDED_ENTRIES.get().add(entry);
             }
         }
+
+        // Add custom namespace fields to enrich the Atom entry
+        if (bean instanceof NewsDocument) {
+            addCustomNamespaceFields(context, entry, (NewsDocument) bean);
+        }
+    }
+
+    /**
+     * Add custom namespace-qualified fields to the Atom entry.
+     * This extends standard Atom with document-specific metadata using a custom namespace.
+     *
+     * This approach allows Atom feeds to carry custom fields while remaining valid Atom documents,
+     * as extension elements are explicitly allowed by the Atom specification (RFC 4287).
+     */
+    private void addCustomNamespaceFields(final HstRequestContext context, final Entry entry,
+                                         final NewsDocument doc) {
+        try {
+            List<Element> foreignMarkup = entry.getForeignMarkup();
+
+            // Add introduction/description field
+            String introduction = doc.getIntroduction();
+            if (introduction != null && !introduction.isEmpty()) {
+                Element introElement = new Element("introduction", FEEDSDEMO_NS);
+                introElement.setText(introduction);
+                foreignMarkup.add(introElement);
+                log.debug("Added introduction field to Atom entry: {}", introduction);
+            }
+
+            // Add location field
+            String location = doc.getLocation();
+            if (location != null && !location.isEmpty()) {
+                Element locationElement = new Element("location", FEEDSDEMO_NS);
+                locationElement.setText(location);
+                foreignMarkup.add(locationElement);
+                log.debug("Added location field to Atom entry: {}", location);
+            }
+
+            // Add author field
+            String author = doc.getAuthor();
+            if (author != null && !author.isEmpty()) {
+                Element authorElement = new Element("author", FEEDSDEMO_NS);
+                authorElement.setText(author);
+                foreignMarkup.add(authorElement);
+                log.debug("Added author field to Atom entry: {}", author);
+            }
+
+            // Add source field
+            String source = doc.getSource();
+            if (source != null && !source.isEmpty()) {
+                Element sourceElement = new Element("source", FEEDSDEMO_NS);
+                sourceElement.setText(source);
+                foreignMarkup.add(sourceElement);
+                log.debug("Added source field to Atom entry: {}", source);
+            }
+        } catch (Exception e) {
+            log.debug("Error adding custom namespace fields to Atom entry: {}", e.getMessage());
+        }
     }
 
     @Override
-    public void modifyFeed(final HstRequestContext context, final Channel feed, final RSS20FeedDescriptor descriptor) {
+    public void modifyFeed(final HstRequestContext context, final Feed feed, final Atom10FeedDescriptor descriptor) {
         super.modifyFeed(context, feed, descriptor);
 
         try {
             // Remove excluded entries from the feed
-            Set<Item> excluded = EXCLUDED_ENTRIES.get();
-            if (!excluded.isEmpty() && feed.getItems() != null) {
-                List<Item> items = feed.getItems();
-                for (Item excludedItem : excluded) {
-                    if (items.remove(excludedItem)) {
-                        log.debug("Removed excluded entry from feed");
+            Set<Entry> excluded = EXCLUDED_ENTRIES.get();
+            if (!excluded.isEmpty() && feed.getEntries() != null) {
+                List<Entry> entries = feed.getEntries();
+                for (Entry excludedEntry : excluded) {
+                    if (entries.remove(excludedEntry)) {
+                        log.debug("Removed excluded entry from Atom feed");
                     }
                 }
             }

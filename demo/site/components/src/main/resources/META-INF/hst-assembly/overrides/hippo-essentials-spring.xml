@@ -31,8 +31,17 @@
   <!-- Feed Modifiers - Property Filtering Examples                 -->
   <!-- ============================================================ -->
 
-  <!-- Example 1: PropertyFilterModifier with custom properties -->
+  <!-- Example 1: PropertyFilterModifier with custom properties (for RSS feeds) -->
   <bean id="propertyFilterModifier" class="org.example.feed.PropertyFilterModifier">
+    <property name="filters">
+      <map>
+        <entry key="location" value="Rome"/>
+      </map>
+    </property>
+  </bean>
+
+  <!-- Example 1b: AtomPropertyFilterModifier with custom properties (for Atom feeds) -->
+  <bean id="atomPropertyFilterModifier" class="org.example.feed.AtomPropertyFilterModifier">
     <property name="filters">
       <map>
         <entry key="location" value="Rome"/>
@@ -46,7 +55,7 @@
   <!-- Example 3: Image modifier with property filtering combined -->
   <bean id="imageModifierWithFiltering" class="org.example.feed.ImageModifier" scope="singleton"/>
 
- <!--  
+ <!--
     To use a modifier with a feed resource, uncomment the desired configuration below
     and ensure the corresponding feed descriptor exists in your content repository.
 
@@ -57,7 +66,17 @@
     <bean id="jaxrsRSSResource" class="org.bloomreach.forge.feed.resource.RssSyndicationResource" scope="prototype">
       <property name="modifier" ref="propertyFilterModifier"/>
     </bean>
-<!-- 
+
+    <!-- Apply property filtering to Atom feeds -->
+    <bean id="jaxrsAtomResource" class="org.bloomreach.forge.feed.resource.AtomSyndicationResource" scope="prototype">
+      <property name="modifier" ref="atomPropertyFilterModifier"/>
+    </bean>
+
+    <!-- Apply property filtering to Generic feeds -->
+    <bean id="jaxrsGenericResource" class="org.bloomreach.forge.feed.resource.GenericSyndicationResource" scope="prototype">
+      <property name="modifier" ref="propertyFilterModifier"/>
+    </bean>
+<!--
     To use different modifiers for different scenarios, create separate resource beans
     with different IDs and reference them appropriately in your sitemap configuration.
    -->

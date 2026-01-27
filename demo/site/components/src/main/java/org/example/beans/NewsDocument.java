@@ -64,7 +64,10 @@ public class NewsDocument extends HippoDocument {
      *
      * @return the date
      */
-    @SyndicationElement(type = FeedType.RSS, name = "pubDate", converter = CalendarToDateConverter.class)
+    @SyndicationRefs({
+            @SyndicationElement(type = FeedType.RSS, name = "pubDate", converter = CalendarToDateConverter.class),
+            @SyndicationElement(type = FeedType.ATOM, name = "published", converter = CalendarToDateConverter.class)
+    })
     @HippoEssentialsGenerated(internalName = "feedsdemo:date")
     public Calendar getDate() {
         return getSingleProperty(DATE);
@@ -96,6 +99,7 @@ public class NewsDocument extends HippoDocument {
      *
      * @return the content
      */
+    @SyndicationElement(type = FeedType.RSS, name = "content:encoded")
     @HippoEssentialsGenerated(internalName = "feedsdemo:content")
     public HippoHtml getContent() {
         return getHippoHtml(CONTENT);
@@ -106,6 +110,7 @@ public class NewsDocument extends HippoDocument {
      *
      * @return the location
      */
+    @SyndicationElement(type = FeedType.RSS, name = "location")
     @HippoEssentialsGenerated(internalName = "feedsdemo:location")
     public String getLocation() {
         return getSingleProperty(LOCATION);
@@ -116,6 +121,7 @@ public class NewsDocument extends HippoDocument {
      *
      * @return the author
      */
+    @SyndicationElement(type = FeedType.RSS, name = "author")
     @HippoEssentialsGenerated(internalName = "feedsdemo:author")
     public String getAuthor() {
         return getSingleProperty(AUTHOR);
@@ -126,6 +132,7 @@ public class NewsDocument extends HippoDocument {
      *
      * @return the source
      */
+    @SyndicationElement(type = FeedType.RSS, name = "source")
     @HippoEssentialsGenerated(internalName = "feedsdemo:source")
     public String getSource() {
         return getSingleProperty(SOURCE);
