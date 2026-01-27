@@ -191,4 +191,12 @@ public class Atom10FeedDescriptor extends HippoDocument implements FeedDescripto
         return getSingleProperty("feed:sortByField");
     }
 
+    public String getFilterByProperty() {
+        return getSingleProperty("feed:filterByProperty");
+    }
+
+    public String getFilterByValue() {
+        return getSingleProperty("feed:filterByValue");
+    }
+
 }

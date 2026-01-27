@@ -89,9 +89,9 @@
     </property>
   </bean>
 
-  <bean id="rssModifier" class="org.bloomreach.forge.feed.api.modifier.RSS20Modifier" scope="singleton"/>
-  <bean id="atomModifier" class="org.bloomreach.forge.feed.api.modifier.Atom10Modifier" scope="singleton"/>
-  <bean id="genericModifier" class="org.bloomreach.forge.feed.api.modifier.GenericModifier" scope="singleton"/>
+  <bean id="rssModifier" class="org.bloomreach.forge.feed.api.modifier.RSS20PropertyFilteringModifier" scope="singleton"/>
+  <bean id="atomModifier" class="org.bloomreach.forge.feed.api.modifier.Atom10EnrichedModifier" scope="singleton"/>
+  <bean id="genericModifier" class="org.bloomreach.forge.feed.api.modifier.GenericPropertyFilteringModifier" scope="singleton"/>
 
   <bean id="jaxrsRSSResource" class="org.bloomreach.forge.feed.resource.RssSyndicationResource">
     <property name="modifier" ref="rssModifier"/>

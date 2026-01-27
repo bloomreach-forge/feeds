@@ -102,7 +102,7 @@
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
     jcr:uuid: 604fc2ba-0011-4e2f-8960-c9ba82f5c5d1
-    hippo:versionHistory: f0ab0bd6-373a-4341-9fd7-28f80f81d6c6
+    hippo:versionHistory: 615530f8-2a30-4ef4-874a-d90f3bbda4c2
     /atom[1]:
       jcr:primaryType: feed:atom10descriptor
       jcr:mixinTypes: ['mix:versionable']
@@ -112,6 +112,8 @@
       feed:contributor: [Atom]
       feed:documentType: feedsdemo:newsdocument
       feed:excludeItems: ''
+      feed:filterByProperty: location
+      feed:filterByValue: rom*
       feed:generator: Atom
       feed:itemCount: 10
       feed:rights: ''
@@ -120,10 +122,11 @@
       feed:subtitle: Sub
       feed:title: Atom news
       hippo:availability: [preview]
+      hippostd:retainable: false
       hippostd:state: unpublished
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2020-02-06T15:12:40.571+01:00
-      hippostdpubwf:lastModificationDate: 2020-02-06T15:13:59.403+01:00
+      hippostdpubwf:lastModificationDate: 2026-01-27T16:07:17.677-06:00
       hippostdpubwf:lastModifiedBy: admin
       /feed:icon:
         jcr:primaryType: hippogallerypicker:imagelink
@@ -146,6 +149,8 @@
       feed:contributor: [Atom]
       feed:documentType: feedsdemo:newsdocument
       feed:excludeItems: ''
+      feed:filterByProperty: location
+      feed:filterByValue: rom*
       feed:generator: Atom
       feed:itemCount: 10
       feed:rights: ''
@@ -154,10 +159,11 @@
       feed:subtitle: Sub
       feed:title: Atom news
       hippo:availability: []
+      hippostd:retainable: false
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2020-02-06T15:12:40.571+01:00
-      hippostdpubwf:lastModificationDate: 2020-02-06T15:13:42.489+01:00
+      hippostdpubwf:lastModificationDate: 2026-01-27T16:07:05.625-06:00
       hippostdpubwf:lastModifiedBy: admin
       /feed:icon:
         jcr:primaryType: hippogallerypicker:imagelink
@@ -180,6 +186,8 @@
       feed:contributor: [Atom]
       feed:documentType: feedsdemo:newsdocument
       feed:excludeItems: ''
+      feed:filterByProperty: location
+      feed:filterByValue: rom*
       feed:generator: Atom
       feed:itemCount: 10
       feed:rights: ''
@@ -188,12 +196,13 @@
       feed:subtitle: Sub
       feed:title: Atom news
       hippo:availability: [live]
+      hippostd:retainable: false
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2020-02-06T15:12:40.571+01:00
-      hippostdpubwf:lastModificationDate: 2020-02-06T15:13:59.403+01:00
+      hippostdpubwf:lastModificationDate: 2026-01-27T16:07:17.677-06:00
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2020-02-06T15:14:01.763+01:00
+      hippostdpubwf:publicationDate: 2026-01-27T16:07:19.303-06:00
       /feed:icon:
         jcr:primaryType: hippogallerypicker:imagelink
         hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe

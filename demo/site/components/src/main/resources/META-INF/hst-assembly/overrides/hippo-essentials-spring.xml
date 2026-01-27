@@ -28,57 +28,47 @@
         class="org.onehippo.cms7.essentials.components.ext.NoopDoBeforeRenderExtension"/>
 
   <!-- ============================================================ -->
-  <!-- Feed Modifiers - Property Filtering Examples                 -->
+  <!-- Feed Modifiers - Custom Extension Examples                   -->
   <!-- ============================================================ -->
 
-  <!-- Example 1: PropertyFilterModifier with custom properties (for RSS feeds) -->
-  <bean id="propertyFilterModifier" class="org.example.feed.PropertyFilterModifier">
-    <property name="filters">
-      <map>
-        <entry key="location" value="Rome"/>
-      </map>
+  <!-- NOTE: Property-based filtering is now built-in to all feed types!
+       Configure filters directly on the feed descriptor (RSS, Atom, Generic) using the
+       "Filter by Property" and "Filter by Value" fields in the CMS UI.
+       See PROPERTY_FILTERING_GUIDE.md for details.
+
+       Atom feeds are automatically enriched with custom namespace fields (introduction, content,
+       author, location, source, language, copyright). You can customize which fields to include.
+       See ATOM_ENRICHMENT_GUIDE.md for details.
+  -->
+
+  <!-- Example 1: Custom Image modifier that adds image URLs to RSS items -->
+  <bean id="imageModifier" class="org.example.feed.ImageModifier" scope="singleton"/>
+
+  <!-- Example 2: Custom Atom enrichment with specific fields for your domain -->
+  <!--
+  <bean id="customAtomModifier" class="org.bloomreach.forge.feed.api.modifier.Atom10EnrichedModifier" scope="singleton">
+    <property name="enrichmentFields">
+      <list>
+        <value>introduction</value>
+        <value>content</value>
+        <value>location</value>
+        <value>source</value>
+      </list>
     </property>
   </bean>
+  -->
 
-  <!-- Example 1b: AtomPropertyFilterModifier with custom properties (for Atom feeds) -->
-  <bean id="atomPropertyFilterModifier" class="org.example.feed.AtomPropertyFilterModifier">
-    <property name="filters">
-      <map>
-        <entry key="location" value="Rome"/>
-      </map>
-    </property>
-  </bean>
-
-  <!-- Example 2: Pre-built PublishedNewsModifier for published news only -->
-  <bean id="publishedNewsModifier" class="org.example.feed.PublishedNewsModifier" scope="singleton"/>
-
-  <!-- Example 3: Image modifier with property filtering combined -->
-  <bean id="imageModifierWithFiltering" class="org.example.feed.ImageModifier" scope="singleton"/>
-
- <!--
-    To use a modifier with a feed resource, uncomment the desired configuration below
-    and ensure the corresponding feed descriptor exists in your content repository.
-
-    Each resource type (RSS20, Atom10, Generic) can have its own modifier configured.
-
-    Example: Uncomment to use property filtering with RSS feeds
- -->
+  <!-- To override the default modifiers with custom implementations,
+       uncomment and configure below. Each resource type can have its own modifier.
+  -->
+  <!--
     <bean id="jaxrsRSSResource" class="org.bloomreach.forge.feed.resource.RssSyndicationResource" scope="prototype">
-      <property name="modifier" ref="propertyFilterModifier"/>
+      <property name="modifier" ref="imageModifier"/>
     </bean>
 
-    <!-- Apply property filtering to Atom feeds -->
     <bean id="jaxrsAtomResource" class="org.bloomreach.forge.feed.resource.AtomSyndicationResource" scope="prototype">
-      <property name="modifier" ref="atomPropertyFilterModifier"/>
+      <property name="modifier" ref="customAtomModifier"/>
     </bean>
-
-    <!-- Apply property filtering to Generic feeds -->
-    <bean id="jaxrsGenericResource" class="org.bloomreach.forge.feed.resource.GenericSyndicationResource" scope="prototype">
-      <property name="modifier" ref="propertyFilterModifier"/>
-    </bean>
-<!--
-    To use different modifiers for different scenarios, create separate resource beans
-    with different IDs and reference them appropriately in your sitemap configuration.
-   -->
+  -->
 
 </beans>
