@@ -9,7 +9,7 @@
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
     jcr:uuid: 532873a9-92b3-4735-910f-5a2be8fecc77
-    hippo:versionHistory: 88af95ba-c22a-4861-bf41-d67408523e3e
+    hippo:versionHistory: 9b8bbb3d-510f-4aed-8880-2833ed1e0577
     /rss[1]:
       jcr:primaryType: feed:rss20descriptor
       jcr:mixinTypes: ['mix:versionable']
@@ -19,6 +19,8 @@
       feed:description: Our RSS feed
       feed:documentType: feedsdemo:newsdocument
       feed:excludeItems: ''
+      feed:filterByProperty: location
+      feed:filterByValue: Rome
       feed:generator: ''
       feed:itemCount: 10
       feed:language: ''
@@ -28,10 +30,11 @@
       feed:title: News RSS feed
       feed:webMaster: ''
       hippo:availability: [preview]
+      hippostd:retainable: false
       hippostd:state: unpublished
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2020-02-06T15:08:21.512+01:00
-      hippostdpubwf:lastModificationDate: 2020-02-06T15:09:03.368+01:00
+      hippostdpubwf:lastModificationDate: 2026-01-29T08:50:00.189-06:00
       hippostdpubwf:lastModifiedBy: admin
       /feed:image:
         jcr:primaryType: hippogallerypicker:imagelink
@@ -48,6 +51,8 @@
       feed:description: Our RSS feed
       feed:documentType: feedsdemo:newsdocument
       feed:excludeItems: ''
+      feed:filterByProperty: location
+      feed:filterByValue: Rome
       feed:generator: ''
       feed:itemCount: 10
       feed:language: ''
@@ -57,10 +62,11 @@
       feed:title: News RSS feed
       feed:webMaster: ''
       hippo:availability: []
+      hippostd:retainable: false
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2020-02-06T15:08:21.512+01:00
-      hippostdpubwf:lastModificationDate: 2020-02-06T15:08:22.920+01:00
+      hippostdpubwf:lastModificationDate: 2026-01-29T08:49:50.984-06:00
       hippostdpubwf:lastModifiedBy: admin
       /feed:image:
         jcr:primaryType: hippogallerypicker:imagelink
@@ -77,6 +83,8 @@
       feed:description: Our RSS feed
       feed:documentType: feedsdemo:newsdocument
       feed:excludeItems: ''
+      feed:filterByProperty: location
+      feed:filterByValue: Rome
       feed:generator: ''
       feed:itemCount: 10
       feed:language: ''
@@ -86,12 +94,13 @@
       feed:title: News RSS feed
       feed:webMaster: ''
       hippo:availability: [live]
+      hippostd:retainable: false
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2020-02-06T15:08:21.512+01:00
-      hippostdpubwf:lastModificationDate: 2020-02-06T15:09:03.368+01:00
+      hippostdpubwf:lastModificationDate: 2026-01-29T08:50:00.189-06:00
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2020-02-06T15:09:06.478+01:00
+      hippostdpubwf:publicationDate: 2026-01-29T08:50:02.031-06:00
       /feed:image:
         jcr:primaryType: hippogallerypicker:imagelink
         hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe

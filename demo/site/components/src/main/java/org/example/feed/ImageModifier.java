@@ -18,7 +18,7 @@ package org.example.feed;
 
 import java.util.List;
 
-import org.bloomreach.forge.feed.api.modifier.RSS20Modifier;
+import org.bloomreach.forge.feed.api.modifier.RSS20PropertyFilteringModifier;
 import org.example.beans.NewsDocument;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoGalleryImageSetBean;
@@ -32,7 +32,7 @@ import com.rometools.rome.feed.rss.Item;
 
 
 
-public class ImageModifier extends RSS20Modifier {
+public class ImageModifier extends RSS20PropertyFilteringModifier {
 
     @Override
     public void modifyEntry(final HstRequestContext context, final Item entry, final HippoBean bean) {

@@ -271,6 +271,7 @@ definitions:
               translator.id: ${cluster.id}.translator
               wicket.id: ${cluster.id}.right.item
               wicket.model: ${wicket.model}
+              caption: Filter property
             /filterByValue:
               jcr:primaryType: frontend:plugin
               engine: ${engine}
@@ -282,6 +283,7 @@ definitions:
               translator.id: ${cluster.id}.translator
               wicket.id: ${cluster.id}.right.item
               wicket.model: ${wicket.model}
+              caption: Filter value
       /atom10descriptor:
         jcr:primaryType: hipposysedit:templatetype
         jcr:mixinTypes: ['editor:editable', 'mix:referenceable']
@@ -556,6 +558,7 @@ definitions:
               translator.id: ${cluster.id}.translator
               wicket.id: ${cluster.id}.right.item
               wicket.model: ${wicket.model}
+              caption: Filter property
             /filterByValue:
               jcr:primaryType: frontend:plugin
               engine: ${engine}
@@ -567,6 +570,7 @@ definitions:
               translator.id: ${cluster.id}.translator
               wicket.id: ${cluster.id}.right.item
               wicket.model: ${wicket.model}
+              caption: Filter value
       /genericdescriptor:
         jcr:primaryType: hipposysedit:templatetype
         jcr:mixinTypes: ['editor:editable', 'mix:referenceable']
@@ -836,6 +840,7 @@ definitions:
               translator.id: ${cluster.id}.translator
               wicket.id: ${cluster.id}.right.item
               wicket.model: ${wicket.model}
+              caption: Filter property
             /filterByValue:
               jcr:primaryType: frontend:plugin
               engine: ${engine}
@@ -847,3 +852,4 @@ definitions:
               translator.id: ${cluster.id}.translator
               wicket.id: ${cluster.id}.right.item
               wicket.model: ${wicket.model}
+              caption: Filter value
