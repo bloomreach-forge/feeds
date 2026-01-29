@@ -69,4 +69,12 @@ public interface FeedDescriptor<T, E> {
 
     public String getExclude();
 
+    /**
+     * Property-based filtering configuration
+     */
+
+    public String getFilterByProperty();
+
+    public String getFilterByValue();
+
 }

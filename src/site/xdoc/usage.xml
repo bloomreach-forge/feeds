@@ -127,6 +127,78 @@
           </a>
         </p>
       </subsection>
+      <subsection name="Filtering Feeds by Document Properties">
+        <p>
+          The Feeds plugin provides an extensible modifier pattern that allows you to filter feed items based on document properties.
+          This is useful when you want to include only specific types of documents in a feed (e.g., only published articles, or articles from a specific category).
+        </p>
+        <p>
+          <strong>PropertyFilterModifier</strong> is a reference implementation that filters items based on property values.
+        </p>
+        <h4>Basic Usage with PropertyFilterModifier</h4>
+        <p>
+          The simplest way to filter by properties is to use the <code>PropertyFilterModifier</code> class.
+          Configure it in your Spring XML:
+        </p>
+        <source>
+&lt;bean id="propertyFilterModifier" class="org.example.feed.PropertyFilterModifier"&gt;
+  &lt;property name="filters"&gt;
+    &lt;map&gt;
+      &lt;entry key="status" value="published" /&gt;
+    &lt;/map&gt;
+  &lt;/property&gt;
+&lt;/bean&gt;
+
+&lt;bean id="jaxrsRSSResource" class="org.bloomreach.forge.feed.resource.RssSyndicationResource"&gt;
+  &lt;property name="modifier" ref="propertyFilterModifier"/&gt;
+&lt;/bean&gt;
+        </source>
+        <p>
+          This configuration ensures that only documents with <code>status</code> property set to <code>published</code> are included in the feed.
+        </p>
+        <h4>Pre-built Example: PublishedNewsModifier</h4>
+        <p>
+          For a common use case, the <code>PublishedNewsModifier</code> is provided. It filters news documents to only include published items:
+        </p>
+        <source>
+&lt;bean id="publishedNewsModifier" class="org.example.feed.PublishedNewsModifier" scope="singleton"/&gt;
+
+&lt;bean id="jaxrsRSSResource" class="org.bloomreach.forge.feed.resource.RssSyndicationResource"&gt;
+  &lt;property name="modifier" ref="publishedNewsModifier"/&gt;
+&lt;/bean&gt;
+        </source>
+        <h4>Multiple Property Filters</h4>
+        <p>
+          You can apply multiple filters by adding multiple entries to the map:
+        </p>
+        <source>
+&lt;bean id="propertyFilterModifier" class="org.example.feed.PropertyFilterModifier"&gt;
+  &lt;property name="filters"&gt;
+    &lt;map&gt;
+      &lt;entry key="status" value="published" /&gt;
+      &lt;entry key="featured" value="true" /&gt;
+    &lt;/map&gt;
+  &lt;/property&gt;
+&lt;/bean&gt;
+        </source>
+        <h4>Creating Custom Filters</h4>
+        <p>
+          To create custom filtering logic, extend <code>PropertyFilterModifier</code> and override the <code>modifyHstQuery</code> method:
+        </p>
+        <source>
+public class CustomPropertyModifier extends PropertyFilterModifier {
+
+    @Override
+    public void modifyHstQuery(HstRequestContext context, HstQuery query,
+                               RSS20FeedDescriptor descriptor) {
+        super.modifyHstQuery(context, query, descriptor);
+
+        // Add your custom query constraints here
+        // Example: query.where(query.prependAssignedNode()).gt("publishDate", "2024-01-01");
+    }
+}
+        </source>
+      </subsection>
     </section>
   </body>
 </document>

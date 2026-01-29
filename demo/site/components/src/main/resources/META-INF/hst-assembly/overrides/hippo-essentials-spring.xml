@@ -27,5 +27,48 @@
   <bean id="org.onehippo.cms7.essentials.components.ext.DoBeforeRenderExtension"
         class="org.onehippo.cms7.essentials.components.ext.NoopDoBeforeRenderExtension"/>
 
+  <!-- ============================================================ -->
+  <!-- Feed Modifiers - Custom Extension Examples                   -->
+  <!-- ============================================================ -->
+
+  <!-- NOTE: Property-based filtering is now built-in to all feed types!
+       Configure filters directly on the feed descriptor (RSS, Atom, Generic) using the
+       "Filter by Property" and "Filter by Value" fields in the CMS UI.
+       See PROPERTY_FILTERING_GUIDE.md for details.
+
+       Atom feeds are automatically enriched with custom namespace fields (introduction, content,
+       author, location, source, language, copyright). You can customize which fields to include.
+       See ATOM_ENRICHMENT_GUIDE.md for details.
+  -->
+
+  <!-- Example 1: Custom Image modifier that adds image URLs to RSS items -->
+  <bean id="imageModifier" class="org.example.feed.ImageModifier" scope="singleton"/>
+
+  <!-- Example 2: Custom Atom enrichment with specific fields for your domain -->
+  <!--
+  <bean id="customAtomModifier" class="org.bloomreach.forge.feed.api.modifier.Atom10EnrichedModifier" scope="singleton">
+    <property name="enrichmentFields">
+      <list>
+        <value>introduction</value>
+        <value>content</value>
+        <value>location</value>
+        <value>source</value>
+      </list>
+    </property>
+  </bean>
+  -->
+
+  <!-- To override the default modifiers with custom implementations,
+       uncomment and configure below. Each resource type can have its own modifier.
+  -->
+  <!--
+    <bean id="jaxrsRSSResource" class="org.bloomreach.forge.feed.resource.RssSyndicationResource" scope="prototype">
+      <property name="modifier" ref="imageModifier"/>
+    </bean>
+
+    <bean id="jaxrsAtomResource" class="org.bloomreach.forge.feed.resource.AtomSyndicationResource" scope="prototype">
+      <property name="modifier" ref="customAtomModifier"/>
+    </bean>
+  -->
 
 </beans>

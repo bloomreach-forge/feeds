@@ -74,6 +74,14 @@ definitions:
               jcr:primaryType: hipposysedit:field
               hipposysedit:path: feed:sortByField
               hipposysedit:type: String
+            /filterByProperty:
+              jcr:primaryType: hipposysedit:field
+              hipposysedit:path: feed:filterByProperty
+              hipposysedit:type: String
+            /filterByValue:
+              jcr:primaryType: hipposysedit:field
+              hipposysedit:path: feed:filterByValue
+              hipposysedit:type: String
         /hipposysedit:prototypes:
           jcr:primaryType: hipposysedit:prototypeset
           /hipposysedit:prototype:
@@ -252,6 +260,30 @@ definitions:
               translator.id: ${cluster.id}.translator
               wicket.id: ${cluster.id}.right.item
               wicket.model: ${wicket.model}
+            /filterByProperty:
+              jcr:primaryType: frontend:plugin
+              engine: ${engine}
+              field: filterByProperty
+              hint: Property name to filter by (e.g., 'status')
+              mode: ${mode}
+              plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+              template.size: ''
+              translator.id: ${cluster.id}.translator
+              wicket.id: ${cluster.id}.right.item
+              wicket.model: ${wicket.model}
+              caption: Filter property
+            /filterByValue:
+              jcr:primaryType: frontend:plugin
+              engine: ${engine}
+              field: filterByValue
+              hint: Property value to match (e.g., 'published')
+              mode: ${mode}
+              plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+              template.size: ''
+              translator.id: ${cluster.id}.translator
+              wicket.id: ${cluster.id}.right.item
+              wicket.model: ${wicket.model}
+              caption: Filter value
       /atom10descriptor:
         jcr:primaryType: hipposysedit:templatetype
         jcr:mixinTypes: ['editor:editable', 'mix:referenceable']
@@ -326,6 +358,14 @@ definitions:
             /sortByField:
               jcr:primaryType: hipposysedit:field
               hipposysedit:path: feed:sortByField
+              hipposysedit:type: String
+            /filterByProperty:
+              jcr:primaryType: hipposysedit:field
+              hipposysedit:path: feed:filterByProperty
+              hipposysedit:type: String
+            /filterByValue:
+              jcr:primaryType: hipposysedit:field
+              hipposysedit:path: feed:filterByValue
               hipposysedit:type: String
         /hipposysedit:prototypes:
           jcr:primaryType: hipposysedit:prototypeset
@@ -507,6 +547,30 @@ definitions:
               translator.id: ${cluster.id}.translator
               wicket.id: ${cluster.id}.right.item
               wicket.model: ${wicket.model}
+            /filterByProperty:
+              jcr:primaryType: frontend:plugin
+              engine: ${engine}
+              field: filterByProperty
+              hint: Property name to filter by (e.g., 'status')
+              mode: ${mode}
+              plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+              template.size: ''
+              translator.id: ${cluster.id}.translator
+              wicket.id: ${cluster.id}.right.item
+              wicket.model: ${wicket.model}
+              caption: Filter property
+            /filterByValue:
+              jcr:primaryType: frontend:plugin
+              engine: ${engine}
+              field: filterByValue
+              hint: Property value to match (e.g., 'published')
+              mode: ${mode}
+              plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+              template.size: ''
+              translator.id: ${cluster.id}.translator
+              wicket.id: ${cluster.id}.right.item
+              wicket.model: ${wicket.model}
+              caption: Filter value
       /genericdescriptor:
         jcr:primaryType: hipposysedit:templatetype
         jcr:mixinTypes: ['editor:editable', 'mix:referenceable']
@@ -581,6 +645,14 @@ definitions:
             /sortByField:
               jcr:primaryType: hipposysedit:field
               hipposysedit:path: feed:sortByField
+              hipposysedit:type: String
+            /filterByProperty:
+              jcr:primaryType: hipposysedit:field
+              hipposysedit:path: feed:filterByProperty
+              hipposysedit:type: String
+            /filterByValue:
+              jcr:primaryType: hipposysedit:field
+              hipposysedit:path: feed:filterByValue
               hipposysedit:type: String
         /hipposysedit:prototypes:
           jcr:primaryType: hipposysedit:prototypeset
@@ -757,3 +829,27 @@ definitions:
               translator.id: ${cluster.id}.translator
               wicket.id: ${cluster.id}.right.item
               wicket.model: ${wicket.model}
+            /filterByProperty:
+              jcr:primaryType: frontend:plugin
+              engine: ${engine}
+              field: filterByProperty
+              hint: Property name to filter by (e.g., 'status')
+              mode: ${mode}
+              plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+              template.size: ''
+              translator.id: ${cluster.id}.translator
+              wicket.id: ${cluster.id}.right.item
+              wicket.model: ${wicket.model}
+              caption: Filter property
+            /filterByValue:
+              jcr:primaryType: frontend:plugin
+              engine: ${engine}
+              field: filterByValue
+              hint: Property value to match (e.g., 'published')
+              mode: ${mode}
+              plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+              template.size: ''
+              translator.id: ${cluster.id}.translator
+              wicket.id: ${cluster.id}.right.item
+              wicket.model: ${wicket.model}
+              caption: Filter value
