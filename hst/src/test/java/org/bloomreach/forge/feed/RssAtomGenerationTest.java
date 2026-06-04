@@ -42,9 +42,13 @@ import org.slf4j.LoggerFactory;
 
 import com.rometools.rome.feed.atom.Feed;
 import com.rometools.rome.feed.rss.Channel;
+import com.rometools.rome.feed.rss.Item;
 import com.rometools.rome.feed.synd.SyndFeedImpl;
 import com.rometools.rome.io.SyndFeedOutput;
 import com.rometools.rome.io.WireFeedOutput;
+
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertEquals;
 
 public class RssAtomGenerationTest {
 
@@ -97,6 +101,29 @@ public class RssAtomGenerationTest {
     }
 
 
+    @Test
+    public void testBlankStringPropertySkipped() throws Exception {
+        Item item = convertObject(new Item(), new TestBeanWithBlankSource(), FeedType.RSS);
+        // blank source must be silently skipped — Item.source is a complex type, not a String
+        assertNull(item.getSource());
+        // other fields must still be mapped correctly
+        assertEquals("testtitle", item.getTitle());
+    }
+
+    public static class TestBeanWithBlankSource {
+
+        @SyndicationElement(type = FeedType.RSS, name = "title")
+        public String getTitle() {
+            return "testtitle";
+        }
+
+        // mirrors NewsDocument.getSource() returning an empty JCR property
+        @SyndicationElement(type = FeedType.RSS, name = "source")
+        public String getSource() {
+            return "";
+        }
+    }
+
     public static class TestBean {
 
         @SyndicationRefs({
@@ -143,7 +170,7 @@ public class RssAtomGenerationTest {
                 final String name = annotation.name();
                 try {
                     final Object initValue = method.invoke(source);
-                    Object value = null;
+                    Object value = initValue;
                     if (!(annotation.converter().isAssignableFrom(NoopConverter.class))) {
                         final Converter converter = annotation.converter().newInstance();
                         value = converter.convert(initValue);
@@ -183,7 +210,9 @@ public class RssAtomGenerationTest {
                         }
 
                     }
-                    BeanUtils.setProperty(destination, name, value);
+                    if (value != null && !(value instanceof String && ((String) value).isBlank())) {
+                        BeanUtils.setProperty(destination, name, value);
+                    }
                 } catch (Exception e) {
                     log.error("test", e);
                 }
