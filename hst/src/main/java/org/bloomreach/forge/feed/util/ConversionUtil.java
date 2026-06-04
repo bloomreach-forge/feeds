@@ -129,7 +129,7 @@ public class ConversionUtil {
                         }
 
                     }
-                    if (value != null) {
+                    if (value != null && !(value instanceof String && ((String) value).isBlank())) {
                         BeanUtils.setProperty(destination, name, value);
                     }
                 } catch (Exception e) {

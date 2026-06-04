@@ -1,5 +1,5 @@
 <!--
-    Copyright 2009-2024 Bloomreach
+    Copyright 2009-2026 Bloomreach
 
     Licensed under the Apache License, Version 2.0 (the  "License");
     you may not use this file except in compliance with the License.
@@ -19,13 +19,13 @@
   <parent>
     <groupId>org.onehippo.cms7</groupId>
     <artifactId>hippo-cms7-project</artifactId>
-    <version>16.0.0</version>
+    <version>17.0.0</version>
   </parent>
 
   <name>Bloomreach Forge Feed Creator</name>
   <groupId>org.bloomreach.forge.feed</groupId>
   <artifactId>feed</artifactId>
-  <version>8.0.1-SNAPSHOT</version>
+  <version>9.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <properties>
@@ -71,7 +71,7 @@
 
   <issueManagement>
     <system>Jira</system>
-    <url>https://issues.onehippo.com/browse/HIPFORGE</url>
+    <url>https://bloomreach.atlassian.net/browse/FORGE</url>
   </issueManagement>
 
   <licenses>
@@ -107,7 +107,7 @@
     <repository>
       <id>bloomreach</id>
       <name>Bloomreach Maven 2 repository</name>
-      <url>http://maven.bloomreach.com/maven2/</url>
+      <url>https://maven.bloomreach.com/maven2/</url>
       <snapshots />
       <releases>
         <updatePolicy>never</updatePolicy>
@@ -157,7 +157,8 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
-          <forkMode>always</forkMode>
+          <forkCount>1</forkCount>
+          <reuseForks>false</reuseForks>
           <workingDirectory>${project.build.directory}</workingDirectory>
         </configuration>
       </plugin>
@@ -181,10 +182,7 @@
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>${maven.plugin.javadoc.version}</version>
         <configuration>
-          <source>1.8</source>
-          <links>
-            <link>http://download.oracle.com/javase/6/docs/api</link>
-          </links>
+          <source>21</source>
         </configuration>
       </plugin>
       <plugin>
