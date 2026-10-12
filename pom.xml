@@ -71,13 +71,13 @@
 
   <issueManagement>
     <system>Jira</system>
-    <url>https://issues.onehippo.com/browse/HIPFORGE</url>
+    <url>https://bloomreach.atlassian.net/jira/software/c/projects/FORGE/issues</url>
   </issueManagement>
 
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
     </license>
   </licenses>
 
@@ -105,10 +105,17 @@
 
   <repositories>
     <repository>
-      <id>bloomreach</id>
-      <name>Bloomreach Maven 2 repository</name>
-      <url>http://maven.bloomreach.com/maven2/</url>
-      <snapshots />
+      <id>bloomreach-maven2</id>
+      <name>Bloomreach Maven 2 Repository</name>
+      <url>https://maven.bloomreach.com/repository/maven2/</url>
+    </repository>
+    <repository>
+      <id>bloomreach-maven2-forge</id>
+      <name>Bloomreach Forge Maven 2 repository.</name>
+      <url>https://maven.bloomreach.com/repository/maven2-forge/</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
       <releases>
         <updatePolicy>never</updatePolicy>
       </releases>
@@ -183,7 +190,7 @@
         <configuration>
           <source>1.8</source>
           <links>
-            <link>http://download.oracle.com/javase/6/docs/api</link>
+            <link>https://download.oracle.com/javase/6/docs/api</link>
           </links>
         </configuration>
       </plugin>
